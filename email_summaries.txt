@@ -1,0 +1,153 @@
+MODEL USED: gpt-3.5-turbo
+
+?? Email Summary Report (Grouped by Category)
+
+
+--- ACTION REQUIRED ---
+
+==================================================================
+📨 Email from: WSPAUDoNotReply@wsp.com
+📌 Subject: Missing Timesheets
+🏷️ Category: Action Required
+
+**Summary:** Missing Timesheets notification for Nick **Importance:** High **Suggested Reply:**
+Hello, Nick. Please submit the missing timesheets for period 202514 at your earliest convenience.
+Thank you. **Category:** Action Required
+
+==================================================================
+
+==================================================================
+📨 Email from: Nathan.Lovett@wsp.com
+📌 Subject: RE: Front B - drafting request
+🏷️ Category: Action Required
+
+**Summary:** Request for drafting new sheets for the Front B design package, emphasizing the
+importance of setting up the drawings correctly to minimize rework.  **Importance:** High
+**Suggested Reply:**  Subject: Re: Front B - drafting request Hi Dinesto, Thank you for emphasizing
+the importance of setting up the drawings correctly. We will ensure to use Xrefs and follow the
+instructions provided. Should there be any questions or concerns, we will reach out promptly. Best
+regards, [Your Name]  **Category:** Action Required
+
+==================================================================
+
+==================================================================
+📨 Email from: Yoshe.Christine@wsp.com
+📌 Subject: RE: Front B Sections 1- 4
+🏷️ Category: Action Required
+
+**Summary:** Request to proceed with modelling remaining geometry for Front B – Construction
+Galleries package and cutting sections for the project. **Importance:** High **Suggested Reply:** Hi
+Yoshe,  Thank you for the update. I will proceed with modelling the Y-junctions and ramps towards
+the resort as requested. I aim to have the 3D modelling completed by COB tomorrow and will start
+cutting sections for Front B - Construction Galleries on Monday as outlined. I will keep you updated
+on the progress.  Best regards, [Your Name] **Category:** Action Required
+
+==================================================================
+
+==================================================================
+📨 Email from: Yoshe.Christine@wsp.com
+📌 Subject: FW: Level 47 - Upper and Lower Galleries (Progress submission)
+🏷️ Category: Action Required
+
+**Summary:** Progress submission for Level 47 - Upper and Lower Galleries **Importance:** Medium
+**Suggested Reply:**  Hi Geno, Thank you for sharing the progress submission. I will review the
+Combined PDF file promptly. Best regards, Yoshe **Category:** Action Required
+
+==================================================================
+
+==================================================================
+📨 Email from: Dara.Schechter@wsp.com
+📌 Subject: Schechter, Dara mentioned you in "AI-ML Tunnel Systems and Structures".
+🏷️ Category: Action Required
+
+**Summary:** Mention in document "AI-ML Tunnel Systems and Structures" **Importance:** Medium
+**Suggested Reply:** Thanks for the heads up. Let me know if you need any input from me during the
+review process. **Category:** Action Required
+
+==================================================================
+
+==================================================================
+📨 Email from: PowerPlat-noreply@microsoft.com
+📌 Subject: Your ExportEmailsToOneDrive Process report is ready
+🏷️ Category: Action Required
+
+**Summary:** Process report for ExportEmailsToOneDrive Process has been updated with new data and
+analytics. **Importance:** Medium **Suggested Reply:** Thank you for the update. I will review the
+new report and analytics. **Category:** Action Required
+
+==================================================================
+
+==================================================================
+📨 Email from: Dara.Schechter@wsp.com
+📌 Subject: Please send headshots
+🏷️ Category: Action Required
+
+**Summary:** Request for high-resolution headshots **Importance:** Medium **Suggested Reply:** Hi
+Dara, Thank you for your email. We will send over the high-resolution headshots by early-mid next
+week. If you need anything else, feel free to let us know. Best regards, Nick and Gencer
+**Category:** Action Required
+
+==================================================================
+
+==================================================================
+📨 Email from: IT-Notification@global.wsp.com
+📌 Subject: IT Incident Message - Bently Connection Client
+🏷️ Category: Action Required
+
+**Summary:** IT Incident Message regarding issues with Bentley Systems Connection Client causing
+connectivity problems for users worldwide. **Importance:** High **Suggested Reply:** Thank you for
+the update. Please keep us informed on the progress. **Category:** Action Required
+
+==================================================================
+
+
+--- INTERNAL ANNOUNCEMENT ---
+
+==================================================================
+📨 Email from: greg.kane@au.wsp.com
+📌 Subject: Hi Nick, check out my latest message
+🏷️ Category: Internal Announcement
+
+**Summary:** Busy first quarter update with a focus on client engagement, strategic wins, and
+upcoming events. **Importance:** Medium **Suggested Reply:** Hi Greg, thanks for the update! It's
+great to hear about the progress and successes across the business. I'll make sure to check out the
+budget breakdown and keep an eye out for further updates. Have a fantastic Easter break! Best, [Your
+Name] **Category:** Internal Announcement
+
+==================================================================
+
+==================================================================
+📨 Email from: SVC-CLD-PwrPlatform@wsp.com
+📌 Subject: WSP welcomes you to Power Platform
+🏷️ Category: Internal Announcement
+
+**Summary:** Welcome to Microsoft Power Platform from WSP with information on how to get started and
+join the Navigator's program. **Importance:** Medium **Suggested Reply:** Thank you for the warm
+welcome and guidance on utilizing Microsoft Power Platform. I will explore the provided resources
+and consider joining the Navigator's program. **Category:** Internal Announcement
+
+==================================================================
+
+
+--- COMPANY FYI ---
+
+==================================================================
+📨 Email from: noreply@yammer.com
+📌 Subject: Updates from All Company, All Company and more at WSP O365
+🏷️ Category: Company FYI
+
+**Summary:** Various updates and discussions from different employees shared on the All Company
+platform at WSP. **Importance:** Low **Suggested Reply:** None needed. **Category:** Company FYI
+
+==================================================================
+
+==================================================================
+📨 Email from: noreply@yammer.com
+📌 Subject: Mirsepassi,, discover trending activity in your organization
+🏷️ Category: Company FYI
+
+**Summary:** Email showcasing various activities and introductions within the organization.
+**Importance:** Low **Suggested Reply:** No response required. **Category:** Company FYI
+
+==================================================================
+

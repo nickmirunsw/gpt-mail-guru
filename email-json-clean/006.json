@@ -1,8 +1,8 @@
 [
   {
     "id": "006",
-    "from": "IT-Notification@global.wsp.com",
-    "subject": "IT Incident Message - Bently Connection Client",
-    "body": "To all targeted users\nIncident Message\n(Bentley Systems Connection Client)\nSystem(s) or Service(s) Impacted\n(Bentley Systems Connection Client)\nUsers Impacted\nWorldwide\nImpact Description\nWe are presently investigating reported issues of users being unable to connect to Bentley Connection Client.\nImpacted users will be unable to access applications reliant on Bentley authentication service (ex. ProjectWise).  Users who already have an established session may be unaffected, however starting a new connection may be difficult at this time.\nWe are investigating with Bentley in order to determine the source of the issue.\nIncident Opened\n01/04/2025 09:03 EST\nNext Update\n01/04/2025 09:03 EST\nIncident Number\nINC1246527\nStatus\nOngoing\nWe apologize for any inconvenience this incident may have caused. An update will follow as soon as possible.\nThank you for your patience,\nWSP IT"
+    "from": "Yoshe.Christine@wsp.com",
+    "subject": "FW: Level 47 - Upper and Lower Galleries (Progress submission)",
+    "body": "From:\nAlviz, Geno <Geno.Alviz@wsp.com>\nSent:\nWednesday, 2 April 2025 7:32 PM\nTo:\nChristine, Yoshe <Yoshe.Christine@wsp.com>\nCc:\nCabangon, Lowell <Lowell.Cabangon@wsp.com>; Abitong, Dinesto <Dinesto.Abitong@wsp.com>; De Leon, Darwin <Darwin.DeLeon@wsp.com>; Losabia, Jerwin <Jerwin.Losabia@wsp.com>\nSubject:\nLevel 47 - Upper and Lower Galleries (Progress submission)\nHi Yoshe,\nPlease see attached file for the Combined PDF “Level 47 - Upper and Lower Galleries (Progress submission_04-02-25)” for your review.\nPDF files and bounded drawings are saved here :\n\\\\corp.pbwan.net\\ANZ\\ProjectsAU\\200xxx\\200359_Sharaan_R1_Tunnels\\4_WIP\\4 Detailed Design ECI\\4.15 Stage 2A - Front B - Upper_Lower Galleries\\4.15.5 Drawings\\PDF\\20250402\nThank you!\nGeno Alviz\nStructural Technician • T&I PH - Bridges, Aviation and Roads, NSW – AU\nT: +63277200504\nM: +639498480337\nWSP Manila Inc.\nGlas Tower - Level 10 Opal Road, cnr Ruby & Topaz Manila, Philippines"
   }
 ]

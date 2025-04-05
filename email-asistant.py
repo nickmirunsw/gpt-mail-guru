@@ -1,9 +1,16 @@
+# STEP 2: email-asistant.py (renamed from email-classifier.py)
+# ✅ Merges summarisation + classification
+# ✅ Only ONE GPT call per email
+# ✅ Group summaries by category for cleaner output
+
 import os
 import json
 import textwrap
+import argparse
 from dotenv import load_dotenv
 from openai import OpenAI
 from pydantic import BaseModel, Field
+from collections import defaultdict
 
 # ---------------------------------------------------------------------
 # 🔐 Load OpenAI API Key from .env
@@ -12,165 +19,90 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # ---------------------------------------------------------------------
-# 📥 Load Emails from emails.json
+# 📅 Handle model selection
 # ---------------------------------------------------------------------
-# Instead of one file, we now loop through all JSON files in 'output' folder
-email_dir = "email-json-clean"
+parser = argparse.ArgumentParser(description="Run GPT email assistant.")
+parser.add_argument("--model", default="gpt-3.5-turbo", help="Model to use (e.g., gpt-4o or gpt-3.5-turbo)")
+args = parser.parse_args()
+model = args.model
+
+# ---------------------------------------------------------------------
+# 📅 Load cleaned emails
+# ---------------------------------------------------------------------
+input_dir = "email-json-clean"
 emails = []
-
-
-for file in os.listdir(email_dir):
+for file in sorted(os.listdir(input_dir)):
     if file.endswith(".json"):
-        with open(os.path.join(email_dir, file)) as f:
-            data = json.load(f)
-
-            # If it's a list of emails
-            if isinstance(data, list):
-                emails.extend(data)
-            # If it's a single email dict
-            elif isinstance(data, dict):
-                emails.append(data)
-
-
+        with open(os.path.join(input_dir, file)) as f:
+            emails.extend(json.load(f))
 
 # ---------------------------------------------------------------------
-# 📄 Set up output file (overwrite every run)
+# 📄 Set up output structure
 # ---------------------------------------------------------------------
-# output_file = "email_summaries_gpt_4.txt"
-output_file = "email_summaries_gpt_3.5.txt"
-with open(output_file, "w") as f:
-    f.write("📬 Email Summary Report\n\n")
+output_file = "email_summaries.txt"
+category_buckets = defaultdict(list)
 
 # ---------------------------------------------------------------------
-# 🧠 Define Pydantic Schema for Tool Output (Optional in v1)
+# 🧠 Define summarisation prompt
 # ---------------------------------------------------------------------
-class SummaryResponse(BaseModel):
-    summary: str = Field(description="A concise summary of the email's content")
-
-# ---------------------------------------------------------------------
-# 🛠️ Define GPT Tool Schema
-# ---------------------------------------------------------------------
-tools = [
-    {
-        "type": "function",
-        "function": {
-            "name": "summarise_email",
-            "description": "Summarises the email content.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "subject": {"type": "string"},
-                    "body": {"type": "string"}
-                },
-                "required": ["subject", "body"],
-                "additionalProperties": False
-            },
-            "strict": True
-        }
-    }
-]
-
-# ---------------------------------------------------------------------
-# 🔁 Loop through all emails and process them one by one
-# ---------------------------------------------------------------------
-for email in emails:
-    subject = email["subject"]
-    body = email["body"]
-
-    # Step 1: Construct system + user messages
+def summarise_email(subject, body):
     messages = [
         {
             "role": "system",
-            "content": "You are an assistant that summarises emails."
+            "content": (
+                "You are an assistant that processes and organises emails.\n\n"
+                "For each email, return the following in this format:\n"
+                "**Summary:** ...\n"
+                "**Importance:** High/Medium/Low\n"
+                "**Suggested Reply:** ...\n"
+                "**Category:** Action Required / Technical/Project / Internal Announcement / Company FYI / Unclassified"
+            )
         },
         {
             "role": "user",
-            "content": f"Please summarise this email:\nSubject: {subject}\nBody: {body}"
+            "content": f"Subject: {subject}\n\nBody: {body}"
         }
     ]
 
-    # Step 2: Ask GPT if it wants to use the summarise_email tool
-    completion = client.chat.completions.create(
-        # model="gpt-4o",
-        model="gpt-3.5-turbo",
-        messages=messages,
-        tools=tools
-    )
-
-    # Step 3: Extract tool call + arguments
-    tool_call = completion.choices[0].message.tool_calls[0]
-    args = json.loads(tool_call.function.arguments)
-
-    # Step 4: Define your tool logic (calls GPT again to summarise)
-    def summarise_email(subject, body):
-        summary_messages = [
-            {
-                "role": "system",
-                "content": (
-                    "You are an assistant that processes emails.\n\n"
-                    "For each email, the following is a must:\n"
-                    "1. Summarise the email clearly and concisely.\n"
-                    "2. Indicate the importance level: High, Medium, or Low.\n"
-                    "3. Generate a short response to the sender. "
-                    "This could be an acknowledgement or an answer to their question.\n\n"
-                    "Format your response like this:\n"
-                    "**Summary:** ...\n"
-                    "**Importance:** High/Medium/Low\n"
-                    "**Suggested Reply:** ...\n"
-                )
-            },
-            {
-                "role": "user",
-                "content": f"Subject: {subject}\n\nBody: {body}"
-            }
-        ]
-
-        response = client.chat.completions.create(
-            # model="gpt-4o",
-            model="gpt-3.5-turbo",
-            messages=summary_messages
-        )
-
-        return {"summary": response.choices[0].message.content.strip()}
-
-    # Step 5: Run your tool
-    tool_result = summarise_email(**args)
-
-    # Step 6: Update the message history with the tool call and response
-    messages.append({
-        "role": "assistant",
-        "tool_calls": completion.choices[0].message.tool_calls
-    })
-
-    messages.append({
-        "role": "tool",
-        "tool_call_id": tool_call.id,
-        "content": json.dumps(tool_result)
-    })
-
-    # Step 7: Ask GPT for the final user-facing message
-    completion_2 = client.chat.completions.create(
-        # model="gpt-4o",
-        model="gpt-3.5-turbo",
+    response = client.chat.completions.create(
+        model=model,
         messages=messages
     )
 
-    final_response = completion_2.choices[0].message.content.strip()
-
-    # Step 8: Save formatted result to output file
-    with open(output_file, "a") as f:
-        f.write("==================================================================\n")
-        f.write(f"📨 Email from: {email['from']}\n")
-        f.write(f"📌 Subject: {subject}\n\n")
-
-        for i, choice in enumerate(completion_2.choices):
-            # f.write(f"✏️ Option {i + 1}:\n")
-            wrapped = textwrap.fill(choice.message.content.strip(), width=100)
-            f.write(wrapped + "\n\n")
-
-        f.write("==================================================================\n\n")
+    return response.choices[0].message.content.strip()
 
 # ---------------------------------------------------------------------
-# ✅ Done
+# 🔀 Process each email
 # ---------------------------------------------------------------------
-print(f"✅ All email summaries saved to: {output_file}")
+for email in emails:
+    summary_block = summarise_email(email["subject"], email["body"])
+
+    # Extract final category for sorting
+    category_line = next((line for line in summary_block.splitlines() if line.startswith("**Category:**")), None)
+    category = category_line.split("**Category:**")[-1].strip() if category_line else "Unclassified"
+
+    full_output = (
+        "==================================================================\n"
+        f"📨 Email from: {email['from']}\n"
+        f"📌 Subject: {email['subject']}\n"
+        f"🏷️ Category: {category}\n\n"
+        f"{textwrap.fill(summary_block, width=100)}\n\n"
+        "==================================================================\n\n"
+    )
+
+    category_buckets[category].append(full_output)
+
+# ---------------------------------------------------------------------
+# 📂 Save grouped output
+# ---------------------------------------------------------------------
+with open(output_file, "w", encoding="utf-8", errors="replace") as f:
+    f.write(f"MODEL USED: {model}\n\n")
+    f.write("\ud83d\udcec Email Summary Report (Grouped by Category)\n\n")
+
+    for cat in ["Action Required", "Technical/Project", "Internal Announcement", "Company FYI", "Unclassified"]:
+        if category_buckets[cat]:
+            f.write(f"\n--- {cat.upper()} ---\n\n")
+            for block in category_buckets[cat]:
+                f.write(block)
+
+print(f"\n📂 All summaries saved to: {output_file}")
