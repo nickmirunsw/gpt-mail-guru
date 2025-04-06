@@ -1,8 +1,0 @@
-[
-  {
-    "id": "014",
-    "from": "IT-Notification@global.wsp.com",
-    "subject": "IT Incident Message - Bently Connection Client",
-    "body": "To all targeted users\nIncident Message\n(Bentley Systems Connection Client)\nSystem(s) or Service(s) Impacted\n(Bentley Systems Connection Client)\nUsers Impacted\nWorldwide\nImpact Description\nWe are presently investigating reported issues of users being unable to connect to Bentley Connection Client.\nImpacted users will be unable to access applications reliant on Bentley authentication service (ex. ProjectWise).  Users who already have an established session may be unaffected, however starting a new connection may be difficult at this time.\nWe are investigating with Bentley in order to determine the source of the issue.\nIncident Opened\n01/04/2025 09:03 EST\nNext Update\n01/04/2025 09:03 EST\nIncident Number\nINC1246527\nStatus\nOngoing\nWe apologize for any inconvenience this incident may have caused. An update will follow as soon as possible.\nThank you for your patience,\nWSP IT"
-  }
-]

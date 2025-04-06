@@ -1,8 +1,0 @@
-[
-  {
-    "id": "013",
-    "from": "IT-Notification@global.wsp.com",
-    "subject": "IT Incident Message - Resolved - Bentley Connection Client",
-    "body": "To all targeted users\nIncident Message\n(Bentley Systems Connection Client)\nSystem(s) or Service(s) Impacted\n(Bentley Systems Connection Client)\nUsers Impacted\nWorldwide\nImpact Description\nUsers have confirmed they are able to authenticate via the connection client subsequent to a refresh of the authentication token.\nA reboot of your PC may be required in order to implement the new token.\nWe are currently monitoring in order to ensure that no further issues persist.\nIncident Opened\n01/04/2025 09:03 EST\nSystem(s)/\nService(s) Restored\n01/04/2025 10:10 EST\nIncident Number\nINC1246527\nStatus\nResolved\nShould you have any questions or issues, please contact our\nIT Service Desk\n.\nThank you for your collaboration,\nWSP IT"
-  }
-]

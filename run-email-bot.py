@@ -24,4 +24,16 @@ if assistant_result.stderr:
     print("❗ Email Assistant Errors:")
     print(assistant_result.stderr)
 
+# ✅ NEW Step 3: Generate To-Do List from Summaries
+print(f"\n📝 Generating professional to-do list with model: {model_choice}")
+todo_result = subprocess.run(
+    ["python3", "email-todo-generator.py", "--model", model_choice],
+    capture_output=True,
+    text=True
+)
+print(todo_result.stdout)
+if todo_result.stderr:
+    print("❗ To-Do List Generator Errors:")
+    print(todo_result.stderr)
+
 print("\n✅ Workflow complete!")

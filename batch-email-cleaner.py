@@ -2,13 +2,19 @@ import json
 import re
 import os
 from bs4 import BeautifulSoup
-from glob import glob
 
 # Ensure output directory exists
 os.makedirs("email-json-clean", exist_ok=True)
 
-# Get all JSON files
-email_files = sorted(glob("email-json-outlook-raw/*.json"))
+# Recursively walk through all subfolders under 'email-json-outlook-raw'
+email_files = []
+for root, _, files in os.walk("email-json-outlook-raw"):
+    for file in files:
+        if file.endswith(".json"):
+            email_files.append(os.path.join(root, file))
+
+# Sort files for consistency
+email_files = sorted(email_files)
 
 for idx, file_path in enumerate(email_files, start=1):
     with open(file_path, "r", encoding="utf-8") as file:
@@ -44,5 +50,6 @@ for idx, file_path in enumerate(email_files, start=1):
 
     print(f"✅ Saved: {output_filename}")
 
-print("\n🎉 All emails processed and saved to 'output/'")
+print("\n🎉 All emails processed")
+
 
