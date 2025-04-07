@@ -8,7 +8,7 @@ os.makedirs("email-json-clean", exist_ok=True)
 
 # Recursively walk through all subfolders under 'email-json-outlook-raw'
 email_files = []
-for root, _, files in os.walk("email-json-outlook-raw"):
+for root, _, files in os.walk("email"):
     for file in files:
         if file.endswith(".json"):
             email_files.append(os.path.join(root, file))
@@ -48,8 +48,6 @@ for idx, file_path in enumerate(email_files, start=1):
     with open(output_filename, "w", encoding="utf-8") as outfile:
         json.dump(email_obj, outfile, indent=2, ensure_ascii=False)
 
-    print(f"✅ Saved: {output_filename}")
+    print(f"[SAVED] {output_filename}")
 
-print("\n🎉 All emails processed")
-
-
+print("\n[COMPLETE] All emails processed")

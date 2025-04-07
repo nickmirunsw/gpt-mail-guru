@@ -1,22 +1,16 @@
-# STEP 2: email-asistant.py (renamed from email-classifier.py)
-# ✅ Merges summarisation + classification
-# ✅ Only ONE GPT call per email
-# ✅ Group summaries by category for cleaner output
-
 import os
 import json
 import textwrap
 import argparse
 from dotenv import load_dotenv
-from openai import OpenAI
-from pydantic import BaseModel, Field
+import openai
 from collections import defaultdict
 
 # ---------------------------------------------------------------------
 # 🔐 Load OpenAI API Key from .env
 # ---------------------------------------------------------------------
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # ---------------------------------------------------------------------
 # 📅 Handle model selection
@@ -33,13 +27,13 @@ input_dir = "email-json-clean"
 emails = []
 for file in sorted(os.listdir(input_dir)):
     if file.endswith(".json"):
-        with open(os.path.join(input_dir, file)) as f:
+        with open(os.path.join(input_dir, file), encoding="utf-8") as f:
             emails.extend(json.load(f))
 
 # ---------------------------------------------------------------------
 # 📄 Set up output structure
 # ---------------------------------------------------------------------
-output_file = "email_summaries.txt"
+output_file = "C:/Users/AUNM510822/Desktop/email_summaries.txt"
 category_buckets = defaultdict(list)
 
 # ---------------------------------------------------------------------
@@ -64,12 +58,12 @@ def summarise_email(subject, body):
         }
     ]
 
-    response = client.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model=model,
         messages=messages
     )
 
-    return response.choices[0].message.content.strip()
+    return response["choices"][0]["message"]["content"].strip()
 
 # ---------------------------------------------------------------------
 # 🔀 Process each email
@@ -97,7 +91,7 @@ for email in emails:
 # ---------------------------------------------------------------------
 with open(output_file, "w", encoding="utf-8", errors="replace") as f:
     f.write(f"MODEL USED: {model}\n\n")
-    f.write("\ud83d\udcec Email Summary Report (Grouped by Category)\n\n")
+    f.write("📬 Email Summary Report (Grouped by Category)\n\n")
 
     for cat in ["Action Required", "Technical/Project", "Internal Announcement", "Company FYI", "Unclassified"]:
         if category_buckets[cat]:
@@ -105,4 +99,4 @@ with open(output_file, "w", encoding="utf-8", errors="replace") as f:
             for block in category_buckets[cat]:
                 f.write(block)
 
-print(f"\n📂 All summaries saved to: {output_file}")
+print("\n[INFO] All summaries saved to:", output_file)

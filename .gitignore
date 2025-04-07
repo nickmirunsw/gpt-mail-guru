@@ -1,9 +1,5 @@
-__pycache__
-email-sample
-learning
-ss
 .env
-power-automate.jpg
+venv
+email
 email-json-clean
-email-json-outlook-raw
-email-summaries.txt
+test.py
